@@ -1,0 +1,138 @@
+<div class="body">
+  <form
+    *ngIf="!formSubmitted"
+    class="dates-form"
+    name="form"
+    (ngSubmit)="onSubmit()"
+    #f="ngForm"
+  >
+    <div class="select-header">Select date range to see the roadmap</div>
+    <div class="dates">
+      <div>
+        <label>Start Date</label>
+        <input
+          type="date"
+          id="startDate"
+          name="startDate"
+          [(ngModel)]="startDate"
+        />
+      </div>
+      <div>
+        <label>End Date</label>
+        <input type="date" id="endDate" name="endDate" [(ngModel)]="endDate" />
+      </div>
+      <div class="btn-block">
+        <button
+          type="submit"
+          [disabled]="!startDate || !endDate || endDate <= startDate"
+          [ngClass]="{
+            disabled: !startDate || !endDate || endDate <= startDate
+          }"
+        >
+          Submit
+        </button>
+      </div>
+      <div class="footer">Note: End date should be greater than start date</div>
+    </div>
+  </form>
+
+  <div class="roadmap-container" *ngIf="formSubmitted">
+    <img
+      class="back-icon"
+      src="assets/icons/back_arrow.svg"
+      alt="back-arrow"
+      (click)="formSubmitted = false"
+    />
+    <div class="heading">Roadmap</div>
+    <div class="container">
+      <div class="chart">
+        <div class="chart-row">
+          <div class="chart-row-item" *ngFor="let time of colData">
+            <li>{{ time }}</li>
+          </div>
+        </div>
+        <div>
+          <div class="chart-column" *ngFor="let data of rowData">
+            <div class="chart-row-item">{{ data.label }}</div>
+            <div class="chart-row-bars">
+              <ng-container *ngFor="let card of data.cardContent">
+                <div
+                  *ngIf="existInRange(card.dueDate)"
+                  class="chart-li"
+                  [style.width]="20 * card.estimation + 'px'"
+                  [style.left]="getLeftPx(card.fromDate)"
+                  [style.background]="card.backgroundColor"
+                  (click)="showFullDetails(card)"
+                >
+                  <div *ngIf="20 * card.estimation < 25" class="default-card">
+                    <img
+                      src="assets/icons/{{ card.issueType }}.svg"
+                      width="12"
+                      alt=""
+                    />
+                  </div>
+                  <div *ngIf="20 * card.estimation > 25">
+                    <label>Key : </label>
+                    <img
+                      src="assets/icons/{{ card.issueType }}.svg"
+                      width="12"
+                      alt=""
+                    />{{ card.key }}
+                  </div>
+                  <ng-container *ngIf="20 * card.estimation > 80">
+                    <div>
+                      <label>Estimation : </label>{{ card.estimation }} days
+                    </div>
+                    <div><label>Due Date : </label>{{ card.dueDate }}</div>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-container" *ngIf="showDetailsPopup">
+    <span class="helper"></span>
+    <div class="popup-content">
+      <div class="popup-close-btn" (click)="showDetailsPopup = false">
+        &times;
+      </div>
+      <div>
+        <label>Key : </label><span>{{ cardDetails.key }}</span>
+      </div>
+      <div>
+        <label>Issue Type : </label
+        ><span
+          ><img
+            src="assets/icons/{{ cardDetails.issueType }}.svg"
+            width="12"
+            alt=""
+          />
+          {{ cardDetails.issueType }}</span
+        >
+      </div>
+      <div>
+        <label>Summary : </label><span>{{ cardDetails.summary }}</span>
+      </div>
+      <div>
+        <label>Description : </label><span>{{ cardDetails.description }}</span>
+      </div>
+      <div>
+        <label>Labels : </label>
+        <span *ngFor="let lb of cardDetails.labels; let last = last">
+          {{ lb }}<span *ngIf="!last">, </span></span
+        >
+      </div>
+      <div>
+        <label>Estimation : </label
+        ><span>{{ cardDetails.estimation }} days</span>
+      </div>
+      <div>
+        <label>Due Date : </label><span>{{ cardDetails.dueDate }}</span>
+      </div>
+    </div>
+  </div>
+</div>

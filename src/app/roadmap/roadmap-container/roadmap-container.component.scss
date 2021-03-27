@@ -1,0 +1,236 @@
+.body {
+    height: 98vh;
+    background: #d3d3d4;
+
+    .select-header {
+        color: #172b4d;
+        text-align: center;
+        font-size: 28px;
+        padding-bottom: 10%;
+    }
+    
+    .dates-form {
+        padding: 20px;
+        font-size: 20px;
+        width: fit-content;
+        margin: 0 auto;
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
+        .dates {
+            display: grid;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 200px;
+            background: white;
+            border-radius: 20px;
+            padding: 15px 100px;
+            position: relative;
+    
+            div:nth-child(2) {
+                input {
+                    margin-left: 5px;
+                }
+            }
+            
+            .footer {
+                font-size: 12px;
+                color: grey;
+                position: absolute;
+                bottom: -22px;
+                left: 10px;
+            }
+        }
+    
+        label {
+            margin-right: 10px;
+        }
+    
+        .btn-block {
+            margin-top: -7px;
+    
+            button {
+                background: rgb(38, 132, 255);
+                border: 1px solid rgb(0, 105, 242);
+                font-style: normal;
+                font-weight: bold;
+                font-size: 15px;
+                color: #ffffff;
+                padding: 9px 23px;
+                width: 103px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+    
+            .disabled {
+                background: #62a6ff;
+                cursor: not-allowed;
+            }
+        }
+    }
+    
+    .roadmap-container {
+        position: relative;
+    
+        .back-icon {
+            width: 30px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+        }
+    
+        .heading {
+            color: #172b4d;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 28px;
+        }
+    
+        .container {
+            width: 90%;
+            border-radius: 10px;
+            overflow: auto;
+            margin: 0 auto;
+            height: calc(94vh - 120px);
+            background: white;
+            padding: 20px 10px 0 10px;
+        
+        
+            .chart {
+                display: grid;
+                margin-top: 6%;
+            
+                .chart-row {
+                    display: flex;
+                    flex-direction: row;
+                    margin-left: 200px;
+                    
+                    .chart-row-item {
+                        width: 200px;
+                        position: relative;
+    
+                        li {
+                            color: #5e6c84;
+                            font-weight: 600;
+                            white-space: nowrap;
+                            width: 27px;
+                            margin-left: 15px;
+                            transform: rotate(-25deg);
+                            margin-left: 0px;
+                        }
+                    }
+                }
+            
+                .chart-column {
+                    display: flex;
+                    flex-direction: row;
+                    border-bottom: 1px solid grey;
+                    align-items: center;
+                    min-height: 60px;
+            
+                    .chart-row-item {
+                        width: 200px;
+                        color: #5e6c84;
+                        font-weight: 600;
+                    }
+            
+                    .chart-row-bars {
+                        display: flex;
+                        flex-direction: row;
+                        position: relative;
+                        height: 180px;
+            
+                        .chart-li {
+                            background: #6b778c;
+                            color: white;
+                            padding: 10px;
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            border: #4da5c0;
+                            border: 1px solid green;
+                            z-index: 10;
+                            cursor: pointer;
+                            position: absolute;
+                            max-height: 138px;
+                            overflow: auto;
+    
+                            .default-card {
+                                img {
+                                    margin-left: -5px;
+                                }
+                            }
+    
+                            label {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+      
+    .popup-container {
+        background:rgba(0,0,0,.4);
+        height:100%;
+        position:fixed;
+        text-align:center;
+        top:0;
+        width:100%;
+        z-index:10000;
+    
+        .helper{
+            display:inline-block;
+            height:100%;
+            vertical-align:middle;
+        }
+    
+        .popup-content {
+            background-color: #fff;
+            box-shadow: 10px 10px 60px #555;
+            display: inline-block;
+            height: auto;
+            max-width: 551px;
+            min-height: 100px;
+            vertical-align: middle;
+            width: 60%;
+            position: relative;
+            border-radius: 8px;
+            padding: 15px 5%;
+    
+            div {
+                padding: 10px;
+            }
+    
+            label {
+                font-weight: 600;
+            }
+    
+            .popup-close-btn {
+                background-color: #fff;
+                border: 3px solid #999;
+                border-radius: 50px;
+                cursor: pointer;
+                display: inline-block;
+                font-family: arial;
+                font-weight: bold;
+                position: absolute;
+                top: -20px;
+                right: -20px;
+                font-size: 25px;
+                line-height: 30px;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+            }
+
+            .popup-close-btn:hover {
+                background-color: #ccc;
+            }
+        }
+    }
+}

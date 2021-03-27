@@ -1,0 +1,8 @@
+{
+    "/rest/*": {
+    "target": "https://pinguintest.atlassian.net",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

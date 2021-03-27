@@ -1,18 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RoadmapContainerComponent } from './roadmap/roadmap-container/roadmap-container.component';
+import { RoadmapService } from './roadmap/roadmap.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RoadmapContainerComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    RoadmapService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
